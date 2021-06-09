@@ -5,9 +5,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class EngineSystem implements Engine {
     private final Map<Card, User> accounts;
-
+    private Bank bank;
     public EngineSystem() {
         accounts = new HashMap<>();
+        bank = new Bank();
+        bank.createDatabase();
     }
 
     @Override
@@ -17,7 +19,9 @@ public class EngineSystem implements Engine {
         String PIN = getRandomPIN();
         card.setCardNumber(cardNumber);
         card.setCardPIN(PIN);
-        accounts.putIfAbsent(card, new User());
+        User user = new User();
+        accounts.putIfAbsent(card, user);
+        bank.insert(cardNumber,PIN,user.getBalance().intValue());
         System.out.println("Your card has been created" +
                 "\nYour card number:" +
                 "\n" + cardNumber +
@@ -41,6 +45,9 @@ public class EngineSystem implements Engine {
     public void getInfo(User user) {
         System.out.println("Balance: " + user.getBalance());
     }
+
+
+
 
     private long getTotal(long rdNum) {
         long sum = 0;
