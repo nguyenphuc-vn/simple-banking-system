@@ -1,7 +1,7 @@
 package personal;
 
 public class Card {
-    private final String BASE= "400000";
+    public static final String BASE= "400000";
     private String cardNumber ;
     private String cardPIN;
 
@@ -11,10 +11,6 @@ public class Card {
     }
 
     public Card() {
-    }
-
-    public String getBASE() {
-        return BASE;
     }
 
     @Override

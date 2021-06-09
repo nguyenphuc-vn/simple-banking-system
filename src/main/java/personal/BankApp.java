@@ -68,7 +68,6 @@ public class BankApp {
     }
 
     private static void infoAction(int choose,User user) {
-
         switch (choose){
             case 1: engine.getInfo(user);
             printInfoUI(user);
